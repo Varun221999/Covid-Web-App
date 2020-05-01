@@ -1,0 +1,69 @@
+@page
+@model task1_graph_model
+@{  
+  var date = Newtonsoft.Json.JsonConvert.SerializeObject(Model.dateCensus);
+  var population = Newtonsoft.Json.JsonConvert.SerializeObject(Model.pop);
+
+
+  ViewData["Title"] = "Census Data";
+}  
+
+<h2>Census Data Graph</h2>  
+
+<br />
+Raw data: @Html.Raw(date)
+<br />
+Raw data: @Html.Raw(population)
+<br />
+
+@{
+   if (@Model.EX != null)
+	 {
+	   <br />
+		 <br />
+		 <h3>**ERROR: @Model.EX.Message</h3>
+		 <br />
+		 <hr />
+		 <br />
+		 <br />
+	 }
+}
+
+<div class="box-body">  
+  <div class="chart-container">  
+     <canvas id="myChart"></canvas>  
+  </div>  
+</div>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: @Html.Raw(date),
+        datasets: [
+        {
+            label: "population",  
+            data: @Html.Raw(population),
+            borderColor: "blue",
+            pointBackgroundColor: "black",
+
+            borderWidth: 1
+        }
+       ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+</script>

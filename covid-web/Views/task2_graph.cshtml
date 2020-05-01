@@ -1,0 +1,71 @@
+@page
+@model task2_graph_model
+@{  
+  var date = Newtonsoft.Json.JsonConvert.SerializeObject(Model.dates);
+  var HOSPITLIZATIONS = Newtonsoft.Json.JsonConvert.SerializeObject(Model.hospitalized);
+  var DEATHS = Newtonsoft.Json.JsonConvert.SerializeObject(Model.deaths);
+
+  ViewData["Title"] = "TASK 2 GRAPH";
+}  
+
+<h2>TASK 2 Graph</h2>  
+
+@{
+   if (@Model.EX != null)
+	 {
+	   <br />
+		 <br />
+		 <h3>**ERROR: @Model.EX.Message</h3>
+		 <br />
+		 <hr />
+		 <br />
+		 <br />
+	 }
+}
+
+<div class="box-body">  
+  <div class="chart-container">  
+     <canvas id="myChart"></canvas>  
+  </div>  
+</div>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: @Html.Raw(date),
+        datasets: [
+        {
+            label: "HOSPITLIZATIONS",  
+            data: @Html.Raw(HOSPITLIZATIONS),
+            borderColor: "blue",
+            pointBackgroundColor: "black",
+
+            borderWidth: 1
+        },
+        {
+            label: "DEATHS",  
+            data: @Html.Raw(DEATHS),
+            borderColor: "red",
+            pointBackgroundColor: "blue",
+
+            borderWidth: 1
+        }
+       ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+</script>
