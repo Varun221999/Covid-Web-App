@@ -1,6 +1,6 @@
 # Web-Based Covid 19 App
 
-#GOAL 
+**GOAL** 
 The objective of the project was to extend an existing webb app that retrieves information about COVID-19 mitigation measures as well as the numbers across USA.
 
 A working application is provided that does 3 things:
