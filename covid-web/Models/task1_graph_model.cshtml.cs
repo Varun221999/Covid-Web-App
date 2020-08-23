@@ -12,9 +12,6 @@ namespace program.Pages
     {
 
 
-        public List<Models.StateCensus> val { get; set; }
-
-
         public List<int> dateCensus { get; set; } 
 
 
@@ -29,7 +26,7 @@ namespace program.Pages
         // When the page is loaded
         public void OnGet(string input)  
         {
-          val = new List<Models.StateCensus>();
+
           dateCensus = new List<int>();
           pop = new List<int>();
           Input = input;
@@ -67,7 +64,6 @@ namespace program.Pages
 								s.Year = Convert.ToInt32(row["year"]);
 								s.Population = Convert.ToInt32(row["population"]);
 
-								val.Add(s);
 								dateCensus.Add(s.Year);
 								pop.Add(s.Population);
 								

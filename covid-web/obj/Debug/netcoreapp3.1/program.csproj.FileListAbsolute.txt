@@ -113,3 +113,7 @@
 /home/codio/workspace/covid-web/obj/Debug/netcoreapp3.1/Razor/Views/task1.cshtml.g.cs
 /home/codio/workspace/covid-web/obj/Debug/netcoreapp3.1/Razor/Views/task2.cshtml.g.cs
 /home/codio/workspace/covid-web/obj/Debug/netcoreapp3.1/Razor/Views/task2_graph.cshtml.g.cs
+/home/codio/workspace/covid-web/obj/Debug/netcoreapp3.1/Razor/Views/task3.cshtml.g.cs
+/home/codio/workspace/covid-web/obj/Debug/netcoreapp3.1/Razor/Views/task3_graph.cshtml.g.cs
+/home/codio/workspace/covid-web/obj/Debug/netcoreapp3.1/Razor/Views/task4.cshtml.g.cs
+/home/codio/workspace/covid-web/obj/Debug/netcoreapp3.1/Razor/Views/task4_graph.cshtml.g.cs

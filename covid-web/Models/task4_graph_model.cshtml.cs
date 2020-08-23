@@ -8,14 +8,12 @@ using System.Data;
   
 namespace program.Pages  
 {  
-    public class task2_graph_model : PageModel  
+    public class task4_graph_model : PageModel  
     {
-
+	
         public List<string> dates { get; set; }
 				
-        public List<int> hospitalized { get; set; } 
-                
-        public List<int> deaths { get; set; }
+        public List<int> total { get; set; } 
 
         public string Input { get; set; }
         
@@ -25,8 +23,7 @@ namespace program.Pages
         public void OnGet(string input)  
         {
           dates = new List<string>();
-          hospitalized = new List<int>();
-          deaths = new List<int>();
+          total = new List<int>();
           Input = input;
           EX = null;
           
@@ -34,7 +31,7 @@ namespace program.Pages
           {
             // query retrieving data from US testing data table
             string sql = string.Format(@"
-SELECT date, hospitalized, death
+SELECT date, total
 FROM us_states_covid19_daily
 WHERE state LIKE '%{0}%'
 ORDER BY date",
@@ -44,18 +41,11 @@ input);
 
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-              string date = Convert.ToString(row["DATE"]);
+              string date = Convert.ToString(row["date"]);
               dates.Add(date);
 
-              
-              string hospl = Convert.ToString(row["hospitalized"]);
-
-							int hospINT = (hospl=="")?0:Convert.ToInt32(hospl);
-              
-              hospitalized.Add(hospINT);
-                            
-              int death = Convert.ToInt32(row["death"]);
-              deaths.Add(death);
+              int total1 = Convert.ToInt32(row["total"]);
+              total.Add(total1);
 
             }
 		      }

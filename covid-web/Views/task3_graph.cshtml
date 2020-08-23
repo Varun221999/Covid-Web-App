@@ -1,0 +1,111 @@
+@page
+@model task3_graph_model
+@{  
+  var date = Newtonsoft.Json.JsonConvert.SerializeObject(Model.dates);
+  
+	var pos1 = Newtonsoft.Json.JsonConvert.SerializeObject(Model.list1);
+  var pos2 = Newtonsoft.Json.JsonConvert.SerializeObject(Model.list2);
+  var pos3 = Newtonsoft.Json.JsonConvert.SerializeObject(Model.list3);
+  var pos4 = Newtonsoft.Json.JsonConvert.SerializeObject(Model.list4);
+  var pos5 = Newtonsoft.Json.JsonConvert.SerializeObject(Model.list5);
+  var pos6 = Newtonsoft.Json.JsonConvert.SerializeObject(Model.list6);
+
+	var states = Newtonsoft.Json.JsonConvert.SerializeObject(Model.stateList);
+
+  ViewData["Title"] = "TASK 3 GRAPH";
+}  
+
+<h2>TASK 3 Graph</h2>  
+
+@{
+   if (@Model.EX != null)
+	 {
+	   <br />
+		 <br />
+		 <h3>**ERROR: @Model.EX.Message</h3>
+		 <br />
+		 <hr />
+		 <br />
+		 <br />
+	 }
+}
+
+<div class="box-body">  
+  <div class="chart-container">  
+     <canvas id="myChart"></canvas>  
+  </div>  
+</div>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: @Html.Raw(date),
+        datasets: [
+        {
+            label: "State 1 Positive Increase",  
+            data: @Html.Raw(pos1),
+            borderColor: "blue",
+            pointBackgroundColor: "blue",
+
+            borderWidth: 1
+        },
+        {
+            label: "State 1 Neagtive Increase",  
+            data: @Html.Raw(pos2),
+            borderColor: "red",
+            pointBackgroundColor: "red",
+
+            borderWidth: 1
+        },
+        {
+            label: "State 2 Positive Increase",  
+            data: @Html.Raw(pos3),
+            borderColor: "green",
+            pointBackgroundColor: "green",
+
+            borderWidth: 1
+        },
+        {
+            label: "State 2 Negative Increase",  
+            data: @Html.Raw(pos4),
+            borderColor: "yellow",
+            pointBackgroundColor: "yellow",
+
+            borderWidth: 1
+        },
+        {
+            label: "State 3 Positive Increase",  
+            data: @Html.Raw(pos5),
+            borderColor: "pink",
+            pointBackgroundColor: "pink",
+
+            borderWidth: 1
+        },
+        {
+            label: "State 3 Negative Increase",  
+            data: @Html.Raw(pos6),
+            borderColor: "black",
+            pointBackgroundColor: "black",
+
+            borderWidth: 1
+        }
+				
+       ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+</script>

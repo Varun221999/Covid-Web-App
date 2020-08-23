@@ -1,15 +1,13 @@
 @page
-@model task1_graph_model
+@model task4_graph_model
 @{  
-  var date = Newtonsoft.Json.JsonConvert.SerializeObject(Model.dateCensus);
-  var population = Newtonsoft.Json.JsonConvert.SerializeObject(Model.pop);
+  var date = Newtonsoft.Json.JsonConvert.SerializeObject(Model.dates);
+  var total = Newtonsoft.Json.JsonConvert.SerializeObject(Model.total);
 
-
-  ViewData["Title"] = "Census Data";
+  ViewData["Title"] = "TASK 4 GRAPH";
 }  
 
-<h2>Census Data Graph</h2>  
-
+<h2>TASK 4 Graph</h2>  
 
 @{
    if (@Model.EX != null)
@@ -41,12 +39,13 @@ var myChart = new Chart(ctx, {
         labels: @Html.Raw(date),
         datasets: [
         {
-            label: "population",  
-            data: @Html.Raw(population),
-            borderColor: "red",
-            pointBackgroundColor: "blue",
+            label: "Total Cases in State",  
+            data: @Html.Raw(total),
+            borderColor: "blue",
+            pointBackgroundColor: "black",
+
             borderWidth: 1
-        }
+        },
        ]
     },
     options: {
